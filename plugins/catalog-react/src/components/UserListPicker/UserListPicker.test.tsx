@@ -68,6 +68,9 @@ const apis = ApiRegistry.from([
   [storageApiRef, MockStorageApi.create()],
 ]);
 
+const mockIsOwnedEntity = (entity: Entity) =>
+  entity.metadata.name === 'component-3';
+
 const mockIsStarredEntity = (entity: Entity) =>
   entity.metadata.name === 'component-3';
 
@@ -75,7 +78,9 @@ jest.mock('../../hooks', () => {
   const actual = jest.requireActual('../../hooks');
   return {
     ...actual,
-    useOwnUser: () => ({ value: mockUser }),
+    useEntityOwnership: () => ({
+      isOwnedEntity: mockIsOwnedEntity,
+    }),
     useStarredEntities: () => ({
       isStarredEntity: mockIsStarredEntity,
     }),
@@ -214,7 +219,7 @@ describe('<UserListPicker />', () => {
     );
 
     expect(updateFilters).toHaveBeenLastCalledWith({
-      user: new UserListFilter('owned', mockUser, mockIsStarredEntity),
+      user: new UserListFilter('owned', mockIsOwnedEntity, mockIsStarredEntity),
     });
   });
 
@@ -233,7 +238,11 @@ describe('<UserListPicker />', () => {
     fireEvent.click(getByText('Starred'));
 
     expect(updateFilters).toHaveBeenLastCalledWith({
-      user: new UserListFilter('starred', mockUser, mockIsStarredEntity),
+      user: new UserListFilter(
+        'starred',
+        mockIsOwnedEntity,
+        mockIsStarredEntity,
+      ),
     });
   });
 });

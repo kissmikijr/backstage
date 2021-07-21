@@ -177,7 +177,11 @@ describe('<EntityListProvider/>', () => {
 
     act(() =>
       result.current.updateFilters({
-        user: new UserListFilter('owned', mockUser, () => true),
+        user: new UserListFilter(
+          'owned',
+          () => true,
+          () => true,
+        ),
       }),
     );
     await waitFor(() => result.current.entities.length !== 2);
