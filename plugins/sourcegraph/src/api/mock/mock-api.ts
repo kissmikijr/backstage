@@ -15,16 +15,15 @@
  */
 
 import { SourcegraphSearchResult } from '../sourcegraph-search-result';
-import { SourcegraphApi  } from '../sourcegraph-api';
+import { SourcegraphApi } from '../sourcegraph-api';
 import mockData from './sourcegraph-issue-mock.json';
-import mockBatchChangesData from './sourcegraph-batch-changes-mock.json'
+import mockBatchChangesData from './sourcegraph-batch-changes-mock.json';
 
-function getMockBatchChanges(repoId: string): Promise<{ pr: string }[]> {
-  return [mockBatchChangesData]
+function getMockBatchChanges(_repoId: string): { pr: string }[] {
+  return [mockBatchChangesData];
 }
-function getMockSearches(query: string): SourcegraphSearchResult[] {
-  return [mockData]
-
+function getMockSearches(_query: string): SourcegraphSearchResult[] {
+  return [mockData];
 }
 
 export class MockSourcegraphApi implements SourcegraphApi {
@@ -33,9 +32,9 @@ export class MockSourcegraphApi implements SourcegraphApi {
       setTimeout(() => resolve(getMockSearches(query)), 800);
     });
   }
-  pendingBatchChange(repoId: string): Promise<{ pr: string }[]>{
+  pendingBatchChange(repoId: string): Promise<{ pr: string }[]> {
     return new Promise(resolve => {
-      setTimeout(()=> resolve(getMockBatchChanges(repoId)), 800)
-    })
+      setTimeout(() => resolve(getMockBatchChanges(repoId)), 800);
+    });
   }
 }
