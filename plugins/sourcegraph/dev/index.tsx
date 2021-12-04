@@ -21,11 +21,13 @@ import React from 'react';
 import {
   EntitySourcegraphContent,
   EntitySourcegraphCard,
+  EntityBatchChangesCard,
   MockSourcegraphApi,
   SourcegraphApi,
   sourcegraphApiRef,
 } from '../src';
 import { SOURCEGRAPH_REPO_ID } from '../src/components/useSourcegraphRepoId';
+import {SOURCE_LOCATION} from '../src/components/useSourceLocation';
 import { Content, Header, Page } from '@backstage/core-components';
 
 const entity = (name?: string, repoId?: string) =>
@@ -35,6 +37,7 @@ const entity = (name?: string, repoId?: string) =>
     metadata: {
       annotations: {
         [SOURCEGRAPH_REPO_ID]: repoId,
+        [SOURCE_LOCATION]: "example-backstage-source"
       },
       name: name,
     },
@@ -64,14 +67,14 @@ createDevApp()
     ),
   })
   .addPage({
-    title: 'Cards',
+    title: 'Batch Changes',
     element: (
       <Page themeId="home">
         <Header title="Sourcegraph" />
         <Content>
           <Grid container>
             <EntityGridItem xs={12} md={6} entity={entity('values', 'example-sourcegraph-repo-id')}>
-              <EntitySourcegraphCard />
+              <EntityBatchChangesCard />
             </EntityGridItem>
           </Grid>
         </Content>

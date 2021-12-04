@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import React from 'react';
-import { useEntityFromUrl } from '@backstage/plugin-catalog-react';
+import { useEntity } from '@backstage/plugin-catalog-react';
 import { sourcegraphPlugin, rootRouteRef } from './plugin';
 import {
   createComponentExtension,
@@ -28,7 +28,7 @@ export const EntitySourcegraphContent = sourcegraphPlugin.provide(
       import('./components/SourcegraphSearchResultsWidget').then(
         ({ SourcegraphSearchResultsWidget }) => {
           const SourcegraphSearchPage = () => {
-            const { entity } = useEntityFromUrl();
+            const { entity } = useEntity();
             return entity ? (
               <SourcegraphSearchResultsWidget entity={entity} />
             ) : (
@@ -48,7 +48,7 @@ export const EntitySourcegraphCard = sourcegraphPlugin.provide(
         import('./components/SourcegraphSearchResultsWidget').then(
           ({ SourcegraphSearchResultsWidget }) => {
             const SourcegraphSearchCard = () => {
-              const { entity } = useEntityFromUrl();
+              const { entity } = useEntity();
               return entity ? (
                 <SourcegraphSearchResultsWidget entity={entity} />
               ) : (
@@ -69,7 +69,7 @@ export const EntityBatchChangesCard = sourcegraphPlugin.provide(
         import('./components/SourcegraphSearchResultsWidget').then(
           ({ EntityBatchChanges }) => {
             const BatchChangesCard = () => {
-              const { entity } = useEntityFromUrl();
+              const { entity } = useEntity();
               return entity ? <EntityBatchChanges entity={entity} /> : <></>;
             };
             return BatchChangesCard;

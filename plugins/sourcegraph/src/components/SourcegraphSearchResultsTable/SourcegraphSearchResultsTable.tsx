@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Backstage Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import React from 'react';
 import { SourcegraphSearchResult } from '../../api';
 import { makeStyles } from '@material-ui/core';
@@ -14,18 +29,7 @@ type SourcegraphSearchResultsTableProps = {
   query: string;
 };
 
-const SourcegraphSearchResultsTable = ({
-  searchResults,
-  query,
-}: SourcegraphSearchResultsTableProps) => {
-  return (
-    <InfoCard>
-      {searchResults.map(searchResult => (
-        <SearchResult data={searchResult} query={query} />
-      ))}
-    </InfoCard>
-  );
-};
+
 const SearchResult = ({
   data,
   query,
@@ -39,7 +43,7 @@ const SearchResult = ({
       <div className="result-container">
         <div>
           <a
-            href={'https://' + data.name}
+            href={`https://${data.name}`}
             target="_blank"
             rel="noopener"
             className={classes.a}
@@ -49,7 +53,7 @@ const SearchResult = ({
           {' > '}
           <a
             href={
-              'https://' + data.name + '/tree/master/' + data.path || data.file
+              `https://${data.name}/tree/master/${data.path}` || data.file
             }
             target="_blank"
             rel="noopener"
@@ -76,7 +80,7 @@ const SearchResult = ({
                                 `<span class="selection-highlight">$1</span>`,
                               ),
                             }}
-                          ></tr>
+                           />
                         ))}
                       </tbody>
                     </table>
@@ -90,6 +94,18 @@ const SearchResult = ({
         </div>
       </div>
     </div>
+  );
+};
+const SourcegraphSearchResultsTable = ({
+  searchResults,
+  query,
+}: SourcegraphSearchResultsTableProps) => {
+  return (
+    <InfoCard>
+      {searchResults.map(searchResult => (
+        <SearchResult data={searchResult} query={query} />
+      ))}
+    </InfoCard>
   );
 };
 export default SourcegraphSearchResultsTable;
