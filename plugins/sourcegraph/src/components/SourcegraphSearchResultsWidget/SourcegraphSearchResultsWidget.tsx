@@ -54,7 +54,7 @@ export const SourcegraphSearchResultsWidget = ({
 
   const l = sourceLocation.replace('https://', '').split('.');
   const [{ loading, value, error }, fetchQuery] = useAsyncFn(
-    () => sourcegraphApi.search(`${query  } repo:^${l[0]}\.${l[1]}$`),
+    () => sourcegraphApi.search(`${query} repo:^${l[0]}\.${l[1]}$`),
     [sourcegraphApi, query],
   );
 
@@ -78,7 +78,7 @@ export const SourcegraphSearchResultsWidget = ({
               <Input
                 classes={{ root: classes.item }}
                 id="input-with-icon-grid"
-                fullWidth={true}
+                fullWidth
                 onChange={e => {
                   setQuery(e.target.value);
                 }}
@@ -92,19 +92,20 @@ export const SourcegraphSearchResultsWidget = ({
           </Grid>
         </Grid>
       </form>
-      {loading || error && (
-        <InfoCard title="Searching..." variant={variant}>
-          {loading && <Progress />}
+      {loading ||
+        (error && (
+          <InfoCard title="Searching..." variant={variant}>
+            {loading && <Progress />}
 
-          {!loading && error && (
-            <EmptyState
-              missing="info"
-              title="No information to display"
-              description={`There is no Sentry project with id '${query}'.`}
-            />
-          )}
-        </InfoCard>
-      )}
+            {!loading && error && (
+              <EmptyState
+                missing="info"
+                title="No information to display"
+                description={`There is no Sourcegraph project with id '${query}'.`}
+              />
+            )}
+          </InfoCard>
+        ))}
       {value ? (
         <SourcegraphSearchResultsTable
           searchResults={value || []}

@@ -135,6 +135,7 @@ import {
 } from '@backstage/plugin-newrelic-dashboard';
 import { EntityGoCdContent, isGoCdAvailable } from '@backstage/plugin-gocd';
 
+import { EntitySourcegraphContent } from '@backstage/plugin-sourcegraph';
 import React, { ReactNode, useMemo, useState } from 'react';
 
 const customEntityFilterKind = ['Component', 'API', 'System'];
@@ -428,6 +429,10 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/todos" title="TODOs">
       <EntityTodoContent />
+    </EntityLayout.Route>
+
+    <EntityLayout.Route path="/sourcegraph" title="Sourcegraph">
+      <EntitySourcegraphContent />
     </EntityLayout.Route>
   </EntityLayoutWrapper>
 );

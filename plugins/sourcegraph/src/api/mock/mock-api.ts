@@ -20,10 +20,10 @@ import mockData from './sourcegraph-issue-mock.json';
 import mockBatchChangesData from './sourcegraph-batch-changes-mock.json';
 
 function getMockBatchChanges(_repoId: string): { pr: string }[] {
-  return [mockBatchChangesData];
+  return [...mockBatchChangesData];
 }
 function getMockSearches(_query: string): SourcegraphSearchResult[] {
-  return [mockData];
+  return [...mockData];
 }
 
 export class MockSourcegraphApi implements SourcegraphApi {

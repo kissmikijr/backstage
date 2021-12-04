@@ -41,32 +41,11 @@ export const EntitySourcegraphContent = sourcegraphPlugin.provide(
   }),
 );
 
-export const EntitySourcegraphCard = sourcegraphPlugin.provide(
-  createComponentExtension({
-    component: {
-      lazy: () =>
-        import('./components/SourcegraphSearchResultsWidget').then(
-          ({ SourcegraphSearchResultsWidget }) => {
-            const SourcegraphSearchCard = () => {
-              const { entity } = useEntity();
-              return entity ? (
-                <SourcegraphSearchResultsWidget entity={entity} />
-              ) : (
-                <></>
-              );
-            };
-            return SourcegraphSearchCard;
-          },
-        ),
-    },
-  }),
-);
-
 export const EntityBatchChangesCard = sourcegraphPlugin.provide(
   createComponentExtension({
     component: {
       lazy: () =>
-        import('./components/SourcegraphSearchResultsWidget').then(
+        import('./components/EntityBatchChanges').then(
           ({ EntityBatchChanges }) => {
             const BatchChangesCard = () => {
               const { entity } = useEntity();

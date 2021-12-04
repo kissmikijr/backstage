@@ -20,14 +20,13 @@ import { Grid } from '@material-ui/core';
 import React from 'react';
 import {
   EntitySourcegraphContent,
-  EntitySourcegraphCard,
   EntityBatchChangesCard,
   MockSourcegraphApi,
   SourcegraphApi,
   sourcegraphApiRef,
 } from '../src';
 import { SOURCEGRAPH_REPO_ID } from '../src/components/useSourcegraphRepoId';
-import {SOURCE_LOCATION} from '../src/components/useSourceLocation';
+import { SOURCE_LOCATION } from '../src/components/useSourceLocation';
 import { Content, Header, Page } from '@backstage/core-components';
 
 const entity = (name?: string, repoId?: string) =>
@@ -37,7 +36,7 @@ const entity = (name?: string, repoId?: string) =>
     metadata: {
       annotations: {
         [SOURCEGRAPH_REPO_ID]: repoId,
-        [SOURCE_LOCATION]: "example-backstage-source"
+        [SOURCE_LOCATION]: 'example-backstage-source',
       },
       name: name,
     },
@@ -50,7 +49,8 @@ createDevApp()
     factory: () =>
       ({
         search: async (query: string) => new MockSourcegraphApi().search(query),
-        pendingBatchChange: async (repoId: string) => new MockSourcegraphApi().pendingBatchChange(repoId)
+        pendingBatchChange: async (repoId: string) =>
+          new MockSourcegraphApi().pendingBatchChange(repoId),
       } as SourcegraphApi),
   })
   .addPage({
@@ -73,7 +73,11 @@ createDevApp()
         <Header title="Sourcegraph" />
         <Content>
           <Grid container>
-            <EntityGridItem xs={12} md={6} entity={entity('values', 'example-sourcegraph-repo-id')}>
+            <EntityGridItem
+              xs={12}
+              md={6}
+              entity={entity('values', 'example-sourcegraph-repo-id')}
+            >
               <EntityBatchChangesCard />
             </EntityGridItem>
           </Grid>
@@ -82,4 +86,3 @@ createDevApp()
     ),
   })
   .render();
-

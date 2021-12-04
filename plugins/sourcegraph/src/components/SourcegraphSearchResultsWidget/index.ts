@@ -14,4 +14,3 @@
  * limitations under the License.
  */
 export { SourcegraphSearchResultsWidget } from './SourcegraphSearchResultsWidget';
-export { EntityBatchChanges } from './EntityBatchChanges';
