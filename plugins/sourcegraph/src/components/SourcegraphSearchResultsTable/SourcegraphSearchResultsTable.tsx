@@ -67,13 +67,13 @@ const SearchResult = ({
             data.highlights?.map((l: any) => {
               const regexp = new RegExp(`(${query})`, 'i');
               return (
-                <div className="file-match-children__item-code-wrapper test-file-match-children-item-wrapper">
+                <div className="file-match-children__item-code-wrapper test-file-match-children-item-wrapper" style={{ borderBottom: '1px solid gray', backgroundColor: '#1d212f' }}
+                >
                   <code className="code-excerpt">
                     <table>
                       <tbody>
                         {l.map((h: any) => (
                           <tr
-                            style={{ borderBottom: '1px solid gray' }}
                             dangerouslySetInnerHTML={{
                               __html: h.replace(
                                 regexp,
