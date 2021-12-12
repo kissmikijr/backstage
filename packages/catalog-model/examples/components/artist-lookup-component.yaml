@@ -6,6 +6,8 @@ metadata:
   tags:
     - java
     - data
+  annotations:
+    backstage.io/source-location: https://github.com/backstage/backstage
   links:
     - url: https://example.com/user
       title: Examples Users

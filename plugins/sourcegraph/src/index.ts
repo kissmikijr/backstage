@@ -18,3 +18,4 @@ export * from './components';
 export { sourcegraphPlugin, sourcegraphPlugin as plugin } from './plugin';
 export { EntitySourcegraphContent, EntityBatchChangesCard } from './extensions';
 export { Router } from './components/Router';
+import './assets/data.css'
